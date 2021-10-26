@@ -4,21 +4,32 @@
 \usepackage[hidelinks]{hyperref}
 
 % --------------------------------------
-% Set the margins
+% Set geometry & margins
 % --------------------------------------
-\usepackage[top=0.5in,left=0.25in,right=0.25in,bottom=0.5in]{geometry}
+\usepackage[landscape,centering]{geometry}
+ 	\geometry{top=0.5in,left=0.25in,right=0.25in,bottom=0.5in}%{left=1cm,right=2.5cm,top=1cm,bottom=1cm}
+% \usepackage[top=0.5in,left=0.25in,right=0.25in,bottom=0.5in]{geometry}
 
 % --------------------------------------
 % Set up the fonts
 % --------------------------------------
-\usepackage[T1]{fontenc}
-\usepackage[no-math]{fontspec}
+% \usepackage[OT1]{fontenc}
+% \usepackage[no-math]{fontspec}
+%
+% \setmonofont[Path=Fonts/]{FiraMono-Regular}
+% \setsansfont[BoldFont={FiraSans-Regular},
+%              Path=Fonts/]{FiraSans-Light}%
 
-\setmonofont[Path=Fonts/]{FiraMono-Regular}
-\setsansfont[BoldFont={FiraSans-Regular},
-             Path=Fonts/]{FiraSans-Light}%
+\usepackage{lmodern}
+% \usepackage{tgcursor}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{FiraMono}
+
+
 
 \renewcommand{\familydefault}{\sfdefault}
+
 
 % --------------------------------------
 % Load the ams packages
@@ -30,9 +41,10 @@
 % --------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{\textbf{Steven E. Thornton}}
-\cfoot{\textbf{\href{http://steventhornton.ca}{steventhornton.ca}}}
-\rfoot{\textbf{Updated:} \today}
+\lfoot{\bfseries Dpto. de Matem\'aticas e Inform\'atica aplicadas a las Ing. Civil y Naval% (autor original: \href{http://steventhornton.ca}{Steven E. Thornton})
+}
+% \cfoot{\textbf{\href{http://steventhornton.ca}{steventhornton.ca}}}
+\rfoot{\textbf{Actualizado:} \today}
 \renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\headrulewidth}{0pt}
 
@@ -44,9 +56,10 @@
 % --------------------------------------
 % Define the colors
 % --------------------------------------
-\definecolor{BlockBackground}{HTML}{F4F4F4}
+\definecolor{BlockBackground}{HTML}{F0F0F0}%F4F4F4
 
 \definecolor{Header}{HTML}{3583B9}
+\colorlet{HeaderAlt}{Header!30!orange}
 \definecolor{row1}{HTML}{BFDAEF}
 \rowcolors{2}{row1!75}{white}
 
@@ -55,10 +68,10 @@
     /tcb/sharp corners=all,
     arc=0mm,%
     noparskip,
-    breakable,
+%     breakable,
     colback=BlockBackground,%
-    colframe=Header,%
-    title=\large\textbf{#1}]}%
+    colframe=Header!90!green,%
+    title=\large\hspace*{-2ex}\textbf{\faBook~#1}]}%
 {\endtcolorbox}
 
 
@@ -72,9 +85,12 @@
 % Minted
 % --------------------------------------
 \usepackage{minted}
-\usemintedstyle{autumn}
+\usemintedstyle{friendly}
+%More info about styles: https://es.overleaf.com/learn/latex/Code_Highlighting_with_minted
 
 \definecolor{mintedbackground}{rgb}{0.97, 0.97, 0.97}
+% \definecolor{mintedbackground}{gray}{0.9}
+% \definecolor{mintedbackground}{HTML}{F0F0F0}
 
 \newminted[mcode]{matlab}{tabsize=4, fontsize=\small, framesep=7\fboxrule,bgcolor=white}
 
@@ -105,13 +121,22 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{colortbl}
-\setlength{\tabcolsep}{10pt}      % Separation between columns in the tables
-\setlength{\arrayrulewidth}{2pt}  % Width of the rules for the tables
+\setlength{\tabcolsep}{8pt}      % Separation between columns in the tables [JVS: modified]
+\setlength{\arrayrulewidth}{1pt}  % Width of the rules for the tables
+
+\renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
 
 \newenvironment{fancytable}[1]
-{\def\arraystretch{1.3}
-\tabularx{0.46\textwidth}{lX}
+{\def\arraystretch{1.2}
+\tabularx{0.32\textwidth}{lX}
 \rowcolor{Header}
+\multicolumn{2}{l}{\textcolor{white}{\large\bfseries \Gape[1mm][1mm]{#1}}}\\}
+{\endtabularx}
+
+\newenvironment{fancytableAlt}[1]
+{\def\arraystretch{1.2}
+\tabularx{0.32\textwidth}{lX}
+\rowcolor{HeaderAlt}
 \multicolumn{2}{l}{\textcolor{white}{\large\bfseries \Gape[1mm][1mm]{#1}}}\\}
 {\endtabularx}
 
@@ -138,7 +163,7 @@
 }
 
 
-\usepackage{microtype}
+% \usepackage{microtype}
 
 % Remove page numbers
 \pagenumbering{gobble}

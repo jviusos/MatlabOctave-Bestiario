@@ -1,4 +1,6 @@
-k = 0;
-while k < 7
-    k = k + 1;
+% Bucle while como un for
+i = 0;
+while i < 7
+    disp(i);
+    i = i + 1;
 end

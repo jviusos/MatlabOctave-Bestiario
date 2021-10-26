@@ -1,3 +1,3 @@
-for k = 1:5
-    disp(k);
+for i = 1:10
+    disp(i);
 end
