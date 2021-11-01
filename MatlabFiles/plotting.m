@@ -18,5 +18,5 @@ axis([-3*pi, 3*pi, -1.5, 1.5])
 xlabel('x'); ylabel('y');
 % Titulo
 title('Grafico de sen(x), cos(x) y 1-x^2');
-% Legenda de curvas
+% Leyenda detallando las curvas
 legend('sen(x)', 'cos(x)', '1-x^2');
