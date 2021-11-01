@@ -28,7 +28,7 @@
     
     \begin{center}
         \vspace*{0.5cm}
-        {\Large\bfseries A lo largo de este documento, $\bm{x}$ e $\bm{y}$ ser\'an vectores fila o columna, $\bm{z}$ un n\'umero complejo, y $\bm{A}$ una matriz.}
+        {\Large\bfseries A lo largo de este documento, $\bm{x}$ e $\bm{y}$ ser\'an vectores fila o columna, $\bm{z}$ un n\'umero complejo, $\bm{A}$ y $\bm{B}$ matrices.}
     \end{center}
     
     \begin{multicols}{3}
@@ -159,9 +159,9 @@
         \end{fancytable}
 
         % -------------------------------------------------------
-        % Ejemplo: valores l\'ogicos
+        % valores l\'ogicos y operaciones l\'ogicas
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplo: valores l\'ogicos y operaciones}
+        \begin{exampleBlock}{Valores l\'ogicos y operaciones l\'ogicas}
             \matlabcode{MatlabFiles/logic.m}
         \end{exampleBlock}
 
@@ -243,7 +243,7 @@
             \cmdo{A * B} & Producto (matricial) de dos matrices $A\cdot B$\\
             \cmdo{A .* B} & Producto (elemento a elemento) de dos matrices\\
             \cmdoesp{A ^ 3} & La matriz (cuadrada) $A$ elevada a la 3\up{a} potencia\\
-            \cmdoesp{A .^ 3} & La matriz con los elementos de $A$ elevados a la 3\up{a} potencia\\
+            \cmdoesp{A .^ 3} & La matriz con los elementos de $A$ elevados al cubo\\
             \cmdo{A'} & Traspuesta de $A$\\
             \cmdo{inv(A)} & Inversa de $A$\\
             \cmdo{A / 3} & Divide cada elemento de $A$ por $3$ \\
@@ -273,12 +273,14 @@
             \cmdo{min(A)} & Vector con el m\'inimo de cada columna de $A$\\
             \hlinefinal%
         \end{fancytable}
+%         \vfill\null
+%         \columnbreak
 
 
         % -------------------------------------------------------
-        % Ejemplo: estructura b\'asica de un programa
+        % estructura b\'asica de un programa
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplo: estructura b\'asica de un programa}
+        \begin{exampleBlock}{estructura b\'asica de un programa}
             \matlabcode{MatlabFiles/programa.m}
         \end{exampleBlock}
 
@@ -318,63 +320,64 @@
         \end{fancytableAlt}
 
         % -------------------------------------------------------
+        % Redondeo de n\'umeros
+        % -------------------------------------------------------
+        \begin{fancytable}{Redondeo de n\'umeros}
+            \cmdo{fix(3.2)} & Elimina la parte decimal de $3.2$ y devuelve el entero 3\\
+            \cmdo{floor(3.2)} & Mayor entero por debajo de $3.2$, es~decir $3$\\
+            \cmdo{floor(-3.2)} & Mayor entero por debajo de $-3.2$, es~decir~$-4$\\
+            \cmdo{ceil(3.2)} & Menor entero por encima de $3.2$, es~decir $4$\\
+            \cmdo{ceil(-3.2)} & Menor entero por encima de $-3.2$, es~decir~$-3$\\
+            \cmdo{round(3.2)} & Entero m\'as cercano a $3.2$, es~decir~$3$\\
+            \cmdo{round(3.7)} & Entero m\'as cercano a $3.7$, es~decir~$4$\\
+            \hlinefinal%
+        \end{fancytable}
+
+
+        % -------------------------------------------------------
         % Generaci\'on de elementos aleatorios
         % -------------------------------------------------------
         \begin{fancytable}{Generaci\'on de elementos aleatorios}
             \cmdo{rand()} & Genera n\up{o} aleatorio equiprobable en el intervalo ABIERTO $(0,1)$ \\
             \cmdo{rand(3)} & Genera una matriz $3\times 3$ de n\up{os} aleatorios equiprobables en $(0,1)$ \\
             \cmdo{rand(4,2)} & Genera una matriz $4\times 2$ de reales aleatorios equiprobables en $(0,1)$ \\
-            \cmdo{2+13*rand()} & Genera n\up{o} aleatorio equiprobable en $(2,15)$ \\
-            \cmdo{fix(1+6*rand())} & Genera n\up{o} ENTERO aleatorio equiprobable en el intervalo CERRADO $[1,6]$\\
+            \cmdo{2+13*rand()} & Genera n\up{o} aleatorio equiprobable en el intervalo ABIERTO $(2,15)$ \\
+            \cmdo{2+fix(13*rand())} & Genera n\up{o} ENTERO aleatorio equiprobable en el intervalo CERRADO $[2,14]$\\
             \hlinefinal%
         \end{fancytable}
         
         % -------------------------------------------------------
-        % Ejemplos: Sentencias condicionales
+        % Sentencias condicionales
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Sentencias condicionales}
+        \begin{exampleBlock}{Sentencias condicionales}
             \matlabcode{MatlabFiles/ifelseifelse.m}
         \end{exampleBlock}
 
-
         % -------------------------------------------------------
-        % Ejemplos: Bucles for I
-        % --------------------------------------------\normalsize-----------
-        \begin{exampleBlock}{Ejemplos: Bucle for {\small (I)} }
-        \matlabcode{MatlabFiles/forloop.m}
-        \end{exampleBlock}
-
+        % Bucles while I
         % -------------------------------------------------------
-        % Ejemplos: Bucles for II
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for {\normalsize (III)} }
-        \matlabcode{MatlabFiles/forloop2.m}
-        \end{exampleBlock}
-
-        % -------------------------------------------------------
-        % Ejemplos: Bucles for III
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for {\normalsize (III)} }
-        \matlabcode{MatlabFiles/forloop3.m}
-        \end{exampleBlock}
-
-        % -------------------------------------------------------
-        % Ejemplos: Bucles while I
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle while {\normalsize (I)} }
+        \begin{exampleBlock}{Bucle while {\normalsize (I)} }
             \matlabcode{MatlabFiles/whileLoop.m}
         \end{exampleBlock}
 
         % -------------------------------------------------------
-        % Ejemplos: Bucles while II
+        % Bucles while II
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle while {\normalsize (II)} }
+        \begin{exampleBlock}{Bucle while {\normalsize (II)} }
             \matlabcode{MatlabFiles/whileLoop2.m}
         \end{exampleBlock}
 
+        % -------------------------------------------------------
+        % Bucle while para condici\'on input
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Bucle while para condici\'on input}
+        \matlabcode{MatlabFiles/whileLoopInput.m}
+        \end{exampleBlock}
+
+
     \end{multicols}
 
-     \begin{comment}
+%     \begin{comment}
 
     \newpage
 
@@ -387,26 +390,112 @@
         \centering
 
         % -------------------------------------------------------
-        % Ejemplos: Bucle for anidado I
+        % Bucles for I
+        % --------------------------------------------\normalsize-----------
+        \begin{exampleBlock}{Bucle for {\small (I)} }
+        \matlabcode{MatlabFiles/forloop.m}
+        \end{exampleBlock}
+
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for anidado I}
+        % Bucles for II
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Bucle for {\normalsize (III)} }
+        \matlabcode{MatlabFiles/forloop2.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Bucles for III
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Bucle for {\normalsize (III)} }
+        \matlabcode{MatlabFiles/forloop3.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Bucle for anidado I
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Bucle for anidado I}
         \matlabcode{MatlabFiles/foranidado.m}
         \end{exampleBlock}
 
         % -------------------------------------------------------
-        % Ejemplos: Bucle for anidado II
+        % Bucle for anidado II
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for anidado II}
+        \begin{exampleBlock}{Bucle for anidado II}
         \matlabcode{MatlabFiles/foranidado2.m}
         \end{exampleBlock}
 
         % -------------------------------------------------------
-        % Ejemplos: Bucle while para condici\'on input
+        % Interrupciones de bucles y programas/funciones
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle while para condici\'on input}
-        \matlabcode{MatlabFiles/foranidado.m}
+        \begin{fancytableAlt}{Interrupciones de bucles y programas/funciones}
+            \cmdo{break} & Interrumpe el menor bucle que lo contiene y continua con el programa\\
+            \cmdo{continue} & Pasa autom\'aticamente a la siguiente iteraci\'on del menor bucle que lo contiene\\
+            \cmdo{return} & Termina autom\'aticamente el progreso del programa o funci\'on\\
+            \hlinefinalAlt%
+        \end{fancytableAlt}
+        \vfill\null
+        \columnbreak
+
+        % -------------------------------------------------------
+        % Algoritmo del intercambio
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Algoritmo del intercambio}
+            \matlabcode{MatlabFiles/algoritmo_intercambio.m}
         \end{exampleBlock}
-        
+
+        % -------------------------------------------------------
+        % Algoritmo de la suma
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Algoritmo de la suma}
+            \matlabcode{MatlabFiles/algoritmo_suma.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Algoritmo del producto
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Algoritmo del producto}
+            \matlabcode{MatlabFiles/algoritmo_producto.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Algoritmo del maximo
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Algoritmo del m\'aximo}
+            \matlabcode{MatlabFiles/algoritmo_maximo.m}
+        \end{exampleBlock}
+        \vfill\null
+        \columnbreak
+
+        % -------------------------------------------------------
+        % Funciones
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Funciones}
+            \matlabcode{MatlabFiles/functions.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Funciones sin argumentos
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Funciones sin argumentos}
+            \matlabcode{MatlabFiles/functionsNoArg.m}
+        \end{exampleBlock}
+
+
+
+
+        % -------------------------------------------------------
+        % Functiones anonimas (I)
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Funciones an\'onimas (I)}
+            \matlabcode{MatlabFiles/functionHandles.m}
+        \end{exampleBlock}
+
+        % -------------------------------------------------------
+        % Functiones anonimas (II)
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Funciones an\'onimas (II)}
+            \matlabcode{MatlabFiles/functionHandles2.m}
+        \end{exampleBlock}
 
     \end{multicols}
     
@@ -421,86 +510,121 @@
         \centering
 
         % -------------------------------------------------------
-        % Ejemplos: Bucle for anidado I
+        % Funciones auxiliares de vectores y matrices (II)
         % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for anidado I}
-        \matlabcode{MatlabFiles/foranidado.m}
-        \end{exampleBlock}
-
-        % -------------------------------------------------------
-        % Ejemplos: Bucle for anidado II
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for anidado II}
-        \matlabcode{MatlabFiles/foranidado2.m}
-        \end{exampleBlock}
-
-        % -------------------------------------------------------
-        % Ejemplos: Bucle while para condici\'on input
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle while para condici\'on input}
-        \matlabcode{MatlabFiles/foranidado.m}
-        \end{exampleBlock}
-
-        % -------------------------------------------------------
-        % Ejemplos: Bucle for anidado II
-        % -------------------------------------------------------
-        \begin{exampleBlock}{Ejemplos: Bucle for anidado II}
-        \matlabcode{MatlabFiles/foranidado2.m}
-        \end{exampleBlock}
-
-
-        % -------------------------------------------------------
-        % Constructing Matrices/Vectors
-        % -------------------------------------------------------
-        \begin{fancytable}{Constructing Matrices and Vectors}
-            \cmdo{zeros(12, 5)} & Make a $12 \times 5$ matrix of zeros\\
-            \cmdo{ones(12, 5)} & Make a $12 \times 5$ matrix of ones\\
-            \cmdo{eye(5)} & Make a $5 \times 5$ identity matrix\\
-            \cmdo{eye(12, 5)} & Make a $12 \times 5$ identity matrix\\
-            \hlinefinal%
-        \end{fancytable}
-
-        % -------------------------------------------------------
-        % Plotting
-        % -------------------------------------------------------
-        \begin{fancytable}{Plotting}
-            \cmdo{plot(x,y)} & Plot $y$ versus $x$ (must be the same length)\\
-            \cmdo{loglog(x,y)} & Plot $y$ versus $x$ on a log-log scale (both axes have a logarithmic scale)\\
-            \cmdo{semilogx(x, y)} & Plot $y$ versus $x$ with $x$ on a log scale\\
-            \cmdo{semilogy(x, y)} & Plot $y$ versus $x$ with $y$ on a log scale\\
-            \cmdo{axis equal} & Force the $x$ and $y$ axes to be scaled equally\\
-            \cmdo{title('A Title')} & Add a title to the plot\\
-            \cmdo{xlabel('x label')} & Add a label to the $x$ axis\\
-            \cmdo{ylabel('y label')} & Add a label to the $y$ axis\\
-            \cmdo{legend('foo', 'bar')} & Label 2 curves for the plot\\
-            \cmdo{grid} & Add a grid to the plot\\
-            \cmdo{hold on} & Multiple plots on single figure\\
-            %\cmdo{axis([xmin, xmax,\newline \hspace*{0.86cm}ymin, ymax])} & Set the view for the plot\\
-            \cmdo{figure} & Start a new plot\\
+        \begin{fancytable}{Funciones auxiliares de vectores y matrices (II)}
+            \cmdo{norm(x)} & Norma $\|x\|$\\%\cmdo{norm([-1 3 1])} & Norma $\|(-1, 3, 1)\|$\\
+            \cmdo{dot(x,y)} & Producto escalar $x\cdot y$\\%\cmdo{dot([1 2 0],[-1 0 1])} & Producto escalar\newline \hspace*{1cm}$(1,2,0)\cdot (-1,0,1)$\\
+            \cmdo{cross(x,y)} & Producto vectorial $x\times y$\\%\cmdo{cross([1 2 0],[-1 0 1])} & Producto vectorial\newline \hspace*{1cm}$(1,2,0)\times (-1,0,1)$\\
+            \hseparador%
+            \cmdo{det(A)} & Determinante de $A$\\
+            \cmdo{trace(A)} & Traza de $A$\\
+            \cmdo{eig(A)} & Vector de autovalores de $A$\\
             \hlinefinal%
         \end{fancytable}
 
 
-        % Functions
-        \begin{exampleBlock}{Funciones}
-            \matlabcode{MatlabFiles/functions.m}
-        \end{exampleBlock}
+        % -------------------------------------------------------
+        % Generando matrices y vectores
+        % -------------------------------------------------------
+        \begin{fancytable}{Generando matrices y vectores}
+            \cmdo{zeros(5)} & Crea una matriz $5 \times 5$ de 0's\\
+            \cmdo{zeros(12, 5)} & Crea una matriz $12 \times 5$ de 0's\\
+            \cmdo{ones(5)} & Crea una matriz $5 \times 5$ de 1's\\
+            \cmdo{ones(12, 5)} & Crea una matriz $12 \times 5$ de 1's\\
+            \cmdo{eye(5)} & Crea una matriz identidad de $5 \times 5$\\
+            \cmdo{eye(12, 5)} & Crea una matriz $12 \times 5$ con 1's en la diagonal\\
+            \hseparador%
+            \cmdo{repmat(A,3,2)} & Crea una matriz por bloques compuesta por $3$ filas y $2$ columnas de matrices $A$\\
+            \cmdo{diag(x)} & Crea una matriz con $x$ en la diagonal y 0's en el resto\\
+            \cmdo{diag(A)} & Devuelve un vector fila conteniendo la diagonal de $A$\\
+            \cmdo{diag(diag(A))} & Crea una matriz manteniendo la diagonal de $A$ y con 0's en el resto\\
+            \hseparador%
+            \cmdo{blkdiag(A,B)} & Crea una matriz por bloques compuesta por $A$ y $B$ como bloques diagonales\\
+            \cmdo{triu(A)} & Matriz triangular superior de $A$\\
+            \cmdo{fliplr(A)} & Matriz formada por intercambiar las columnas de $A$ con respecto al eje vertical medio\\
+            \cmdo{fliplr(A)} & Matriz formada por intercambiar las filas de $A$ con respecto al eje horizontal medio\\
+            \cmdo{reshape(A,[5,2])} & Matriz $5\times2$ formada por los elementos de $A$ manteniendo el orden\\
+            \hlinefinal%
+        \end{fancytable}
 
-        % Function handles
-        \begin{exampleBlock}{Funciones abreviadas}
-            \matlabcode{MatlabFiles/functionHandles.m}
-        \end{exampleBlock}
 
-        % Plotting
-        \begin{exampleBlock}{Gr\'aficas}
+        % -------------------------------------------------------
+        % Operadores e \'indices l\'ogicos
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Operadores e \'indices l\'ogicos}
+            \matlabcode{MatlabFiles/logicIndex.m}
+        \end{exampleBlock}
+%         \vfill\null
+        \columnbreak
+
+        % -------------------------------------------------------
+        % Funciones para b\'usqueda de condiciones l\'ogicas}
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Funciones para b\'usqueda de condiciones l\'ogicas}
+            \matlabcode{MatlabFiles/funcsLogicIndex.m}
+        \end{exampleBlock}
+%         \vfill\null
+%         \columnbreak
+%
+%         \vfill\null
+%         \columnbreak
+
+
+        % -------------------------------------------------------
+        % Gr\'aficos 2D
+        % -------------------------------------------------------
+        \begin{fancytable}{Gr\'aficos 2D}
+            \cmdo{plot([2,4],[-1,3])} & Dibuja el segmento entre puntos \newline\hspace*{1cm}$(2,-1)$ y $(4,3)$\\
+            \hspace*{-1.5ex}$\begin{array}{l}\text{\cmdo{plot( [1 6 5 2 1], }} \\[-0.25em] \text{\hspace*{0.89cm}\cmdo{[2 0 4 3 2] )}} \end{array}$ & Dibuja el pol\'igono de puntos (1\up{er} y \'ultimo punto iguales: p.ej. $(1,2)$) \\
+            \cmdo{plot(x,y)} & Dibuja el gr\'afico de puntos con ordenadas $y$ con respecto a las abscisas $x$ (es decir, los puntos~$(x(i),y(i))$)\\
+%             \cmdo{loglog(x,y)} & Plot $y$ versus $x$ on a log-log scale (both axes have a logarithmic scale)\\
+%             \cmdo{semilogx(x, y)} & Plot $y$ versus $x$ with $x$ on a log scale\\
+%             \cmdo{semilogy(x, y)} & Plot $y$ versus $x$ with $y$ on a log scale\\
+            \cmdo{axis equal} & Fuerza a tener la misma escala en el eje $x$ y en el $y$\\
+            \hspace*{-1.5ex}$\begin{array}{l}\text{\cmdo{axis([xmin, xmax,}} \\[-0.25em] \text{\hspace*{0.85cm}\cmdo{ymin, ymax])}} \end{array}$ & Fija los l\'imites del gr\'afico en valores particulares de los ejes\\
+            \cmdo{title('Un T\'itulo')} & A\~nade un t\'itulo al gr\'afico\\
+            \cmdo{xlabel('etiqueta x')} & A\~nade una etiqueta al eje $x$\\
+            \cmdo{ylabel('etiqueta y')} & A\~nade una etiqueta al eje $y$\\
+            \cmdo{legend('esto','este')} & Etiqueta dos curvas en el gr\'afico\\
+            \cmdo{grid} & A\~nade una cuadr\'icula al gr\'afico\\
+            \cmdo{hold on,..., hold off} & Superpone gr\'aficos\\
+            \cmdo{figure} & Comienza un nuevo gr\'afico\\
+            \cmdo{clf} & Limpia la ventana de gr\'aficos\\
+            \hlinefinal%
+        \end{fancytable}
+
+        % -------------------------------------------------------
+        % Modificadores de formato del gr\'afico
+        % -------------------------------------------------------
+        \begin{fancytableAlt}{Modificadores de formato del gr\'afico}
+            \cmdo{plot(x,y,'-\hspace*{0.1ex}-*r')} & Gr\'afico de con linea de trazos discontinuos (\cmdo{'-\hspace*{0.1ex}-'}), puntos estrellados (\cmdo{'*'}), en color rojo (\cmdo{'r'})\\
+            \cmdo{. * x o + -} & Tipos de puntos para rellenar el gr\'afico\\
+            \cmdo{- -\hspace*{0.1ex}- -. :} & Tipos de linea uniendo puntos\\
+%             -    continua
+%             -- trazos discontinuos
+%             -. puntos y trazos
+%             :    puntos
+            \cmdo{y g m b w r k} & Colores: amarillo, verde, azul, blanco, rojo, negro\\
+            \cmdo{'Linewidth',0.5} & Cambia el grosor de l\'inea a la mitad\\
+            \cmdo{'Markersize',2} & Cambia el grosor del punto al doble\\
+            \hlinefinalAlt%
+        \end{fancytableAlt}
+
+        % -------------------------------------------------------
+        % Gr\'aficos 2D
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Gr\'aficos 2D}
             \matlabcode{MatlabFiles/plotting.m}%
             \quad\\
 
             \includegraphics[width=\textwidth]{plotting.eps}
         \end{exampleBlock}
 
+
+
     \end{multicols}
 
-\end{comment}
+
 
 \end{document}

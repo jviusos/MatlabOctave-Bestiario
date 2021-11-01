@@ -1,6 +1,8 @@
-function output = addNumbers(x, y)
-    output = x + y;
-end
+% suma
+% IMPORTANTE: en el fichero suma.m
+function w = suma(x, y)
+    w = x + y;
+end %opcional
 
-addNumbers(10, -5)
-    5
+>> suma(10, -5)
+      5
