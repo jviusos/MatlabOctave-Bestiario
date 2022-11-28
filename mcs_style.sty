@@ -41,7 +41,18 @@
 % --------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{\bfseries Dpto. de Matem\'aticas e Inform\'atica aplicadas a las Ing. Civil y Naval -- UPM% (autor original: \href{http://steventhornton.ca}{Steven E. Thornton})
+\lfoot{%
+    \footnotesize%
+    \bfseries
+    \emph{Autor: Juan Viu Sos}%
+    ~~$\bullet$~~%
+    \href{mailto:"Juan Viu Sos <juan.viu.sos@upm.es>"}{\faEnvelope}%
+    ~~$\bullet$~~%
+    \href{http://jviusos.github.io/}{\faHome}%
+    ~~$\bullet$~~%
+    \href{https://github.com/jviusos/}{\faGit}%
+    ~~$\bullet$~~%
+    \href{https://www1.caminos.upm.es/matematicas/}{Dpto. de Matem\'aticas e Inform\'atica aplicadas a las Ing. Civil y Naval -- UPM}% (autor original: \href{http://steventhornton.ca}{Steven E. Thornton})
 }
 % \cfoot{\textbf{\href{http://steventhornton.ca}{steventhornton.ca}}}
 \rfoot{\textbf{Actualizado:} \today}
@@ -74,6 +85,18 @@
     colback=BlockBackground,%
     colframe=Header!90!green,%
     title=\large\hspace*{-2ex}\textbf{\faBook~#1}]}%
+{\endtcolorbox}
+
+\newenvironment{fileBlock}[1]{%
+\tcolorbox[%
+    /tcb/sharp corners=all,
+    arc=2mm,%
+    noparskip,
+    breakable,
+    colback=gray!5,%
+    colframe=Header!90!blue,%
+     title=\normalsize\hspace*{-2ex}\texttt{\bfseries\faFileText~#1}%
+    ]}%
 {\endtcolorbox}
 
 
@@ -110,6 +133,21 @@
     samepage=false,
     showspaces=false,
     showtabs =false,
+    texcl=false,
+}
+
+\newmintedfile[filecode]{text}{
+    fontfamily=tt,%fontshape=\upshape,
+    fontsize=\small,
+%     linenos,
+%     numbersep=5pt,
+    framesep=2mm,
+    funcnamehighlighting=true,
+    tabsize=4,
+    obeytabs=false,
+    mathescape=false
+    samepage=false,
+    showspaces,
     texcl=false,
 }
 

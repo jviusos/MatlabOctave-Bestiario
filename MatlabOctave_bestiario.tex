@@ -8,12 +8,18 @@
 \usepackage{comment}
 \usepackage{fontawesome}
 
+\usepackage{textcomp}     % access \textquotesingle
+
+
 % Usaremos \cmdo{} para el estilo del comando
 
 \newcommand{\cmdo}[1]{\texttt{\small\bfseries#1}} %boldface truewriter Fira Mono
 \newcommand{\cmdoesp}[1]{\texttt{\small\bfseries\detokenize{#1}}} %comando especial para cuando el comando contenga simbolos sensibles en Latex (p.ej. ^, \,...)
 
 \newcommand{\up}[1]{${}^\mathrm{#1}$}
+\newcommand{\T}[1]{\textquotesingle}
+\newcommand{\cadena}[1]{\textquotesingle #1\textquotesingle}
+
 
 \newcommand{\hseparador}{\chline{gray!50!Header}}
 \newcommand{\hlinefinal}{\chline{Header}\chline{Header}}
@@ -50,7 +56,7 @@
 %             \cmdo{format long e} & Muestra n\up{os} con 15 decimales en notaci\'on exponencial\\
 %             \cmdo{format rat} & Muestra n\up{os} en formato racional\\
 %             \hseparador%
-            \cmdo{diary 'fichero.txt'} & Registra en un fichero lo que se hace en la ventana de comandos\\
+            \cmdo{diary \cadena{fichero.txt}} & Registra en un fichero lo que se hace en la ventana de comandos\\
             \cmdo{diary off} & Para el registro\\
             \cmdo{diary on} & Reanuda el registro\\
             \hseparador%
@@ -67,7 +73,7 @@
             \cmdo{cd carpeta} & Permite acceder a una carpeta del directorio de trabajo actual \\
             \hseparador%
             \cmdo{help comando} & Abre la documentaci\'on del comando\\
-            \cmdo{lookfor 'texto'} & Busca el texto en la documentaci\'on de comandos\\
+            \cmdo{lookfor \cadena{texto}} & Busca el texto en la documentaci\'on de comandos\\
             \hseparador%
             \cmdo{...} & Conecta una misma sentencia escrita en dos lineas seguidas de c\'odigo\\
             \cmdo{comando;} & La ``\cmdo{;}'' suprime la salida del comando\\
@@ -91,7 +97,7 @@
             \cmdo{format rat} & Muestra n\up{os} en formato racional\\
             \hseparadorAlt%
             \cmdo{\% Esto es un comentario} & Comentarios\\
-            \cmdo{disp('texto')} & Muestra el texto\\
+            \cmdo{disp(\cadena{texto})} & Muestra el texto\\
             \cmdo{disp(x)} & Muestra el contenido de la variable $x$\\
             \hlinefinalAlt
         \end{fancytableAlt}
@@ -140,7 +146,7 @@
             & Crea el n\'umero complejo $z=1-2i$\newline (a partir de las partes real e imaginaria)\\
             \cmdo{abs(z)} & M\'odulo (valor absoluto) de $z$ \\
             \cmdo{angle(z)} & Argumento de $z$ \\
-            \cmdo{z'} & Conjugado de $z$ \\
+            \cmdo{z\T} & Conjugado de $z$ \\
             \cmdo{real(z)} & Parte real de $z$ \\
             \cmdo{imag(z)} & Parte imaginaria de $z$ \\
             \cmdo{isreal(z)} & Devuelve 1 si $z$ es real, 0 si no \\
@@ -153,7 +159,7 @@
         \begin{fancytable}{Definiendo variables b\'asicas}
             \cmdo{a = 3} & Define la variable $a$ como $3$\\
             \cmdo{b = 4.321} & Define la variable $b$ como $4.321$\\
-            \cmdo{c = 'texto'} & Define en $c$ una cadena de caracteres con el texto \\
+            \cmdo{c = \cadena{texto}} & Define en $c$ una cadena de caracteres con el texto \\
             \cmdo{cond = logical(1)} & Define en $cond$ el valor l\'ogico 1 (\emph{true}) \\
             \hlinefinal
         \end{fancytable}
@@ -175,7 +181,7 @@
             \cmdo{x = [1 2 3]} &  fila $[1, 2, 3]$\\
             \rowcolor{row1!0}
             \cmdo{x = [1; 2; 3]}~~~\'o & Define $x$ como el vector\\
-            \cmdo{x = [1, 2, 3]'} &  columna $[1, 2, 3]^{t}$ \\
+            \cmdo{x = [1, 2, 3]\T} &  columna $[1, 2, 3]^{t}$ \\
             \cmdo{7:15} & Vector fila con $7,\,8,\ldots,14,\,15$ \\
             \cmdo{1.1:0.2:3.3} & Vector fila con $1.1,\,1.3,\ldots,3.3$ \\
             \cmdo{linspace(2, 6.5, 100)} & Genera un vector fila con $100$ componentes equiespaciadas entre el $2$ y el $6.3$\\
@@ -244,7 +250,7 @@
             \cmdo{A .* B} & Producto (elemento a elemento) de dos matrices\\
             \cmdoesp{A ^ 3} & La matriz (cuadrada) $A$ elevada a la 3\up{a} potencia\\
             \cmdoesp{A .^ 3} & La matriz con los elementos de $A$ elevados al cubo\\
-            \cmdo{A'} & Traspuesta de $A$\\
+            \cmdo{A\T} & Traspuesta de $A$\\
             \cmdo{inv(A)} & Inversa de $A$\\
             \cmdo{A / 3} & Divide cada elemento de $A$ por $3$ \\
             \cmdo{3 ./ A} & Devuelve la matriz donde cada elemento es $3$ dividido por el correspondiente de $A$ \\
@@ -259,8 +265,10 @@
         % -------------------------------------------------------
         \begin{fancytable}{Funciones auxiliares de vectores y matrices (I)}
             \cmdo{length(x)} & N\up{o} de componentes de $x$ \\
-            \cmdo{size(A)} & Tama\~no de $A$ \\
-            \cmdo{[m,n]=size(A)} & Asigna a $m$ el n\up{o} de filas y a $n$ el n\up{o} de columnas de $A$ \\
+%             \cmdo{size(A)} & Tama\~no de $A$ \\
+            \cmdo{[m,n]=size(A)} & Tama\~no de $A$. Asigna a \cmdo{m} el n\up{o} de filas y a \cmdo{n} el n\up{o} de columnas de $A$ \\
+            \cmdo{size(A,1)} & N\up{o} de filas de $A$ \\
+            \cmdo{size(A,2)} & N\up{o} de columnas de $A$ \\
             \cmdo{sum(x)} & Suma todos los elementos de $x$\\
             \cmdo{sum(A)} & Vector de sumas de cada columna de $A$\\
             \cmdo{prod(x)} & Multiplica todos los elementos de $x$\\
@@ -288,12 +296,12 @@
         % Entrada y salida de datos
         % -------------------------------------------------------
         \begin{fancytableAlt}{Entrada y salida de datos}
-            \cmdo{a=input('Introduce dato:')} & Saca en pantalla el texto de entrada de dato y se lo asigna a $a$ al presionar {\bf Enter} \\
-            \cmdo{c=input('?`Nombre?','s')} & Asigna la cadena de caracteres introducida por usuario  \\
+            \cmdo{a=input(\cadena{Introduce dato: })} & Saca en pantalla el texto de entrada de dato y se lo asigna a $a$ al presionar {\bf Enter} \\
+            \cmdo{c=input(\cadena{?`Nombre?},\cadena{s})} & Asigna la cadena de caracteres introducida por usuario  \\
             \hseparadorAlt%
-            \cmdo{disp(A)}~~\'o~~\cmdo{disp('texto')} & Muestra $A$ o texto \\
-            \cmdo{fprintf('Es a=\%f \cmdoesp{\n}', a)} & Escribe en pantalla el texto combinado con el dato de $a$ \\
-            \cmdo{c=sprintf('Es a=\%f \cmdoesp{\n}', a)} & Almacena en $c$ la cadena de caracteres del texto combinado con el dato de $a$ \\
+            \cmdo{disp(A)}~~\'o~~\cmdo{disp(\cadena{texto})} & Muestra $A$ o texto \\
+            \cmdo{fprintf(\cadena{Es a=\%f \verb|\n|}, a)} & Escribe en pantalla el texto combinado con el dato de $a$ \\
+            \cmdo{c=sprintf(\cadena{Es a=\%f \verb|\n|}, a)} & Almacena en $c$ la cadena de caracteres del texto combinado con el dato de $a$ \\
 %             \hseparadorAlt%
 %             \cmdo{\%f} & Formato de salida de datos en coma flotante \\
 %             \cmdo{\%d} & Formato de salida de datos como enteros, l\'ogicos,... \\
@@ -342,7 +350,8 @@
             \cmdo{rand(3)} & Genera una matriz $3\times 3$ de n\up{os} aleatorios equiprobables en $(0,1)$ \\
             \cmdo{rand(4,2)} & Genera una matriz $4\times 2$ de reales aleatorios equiprobables en $(0,1)$ \\
             \cmdo{2+13*rand()} & Genera n\up{o} aleatorio equiprobable en el intervalo ABIERTO $(2,15)$ \\
-            \cmdo{2+fix(13*rand())} & Genera n\up{o} ENTERO aleatorio equiprobable en el intervalo CERRADO $[2,14]$\\
+            \cmdo{randi([2,14])} & Genera n\up{o} ENTERO aleatorio equiprobable en el intervalo CERRADO $[2,14]$\\
+%             \cmdo{2+fix(13*rand())} & Genera n\up{o} ENTERO aleatorio equiprobable en el intervalo CERRADO $[2,14]$\\
             \hlinefinal%
         \end{fancytable}
         
@@ -583,10 +592,10 @@
 %             \cmdo{semilogy(x, y)} & Plot $y$ versus $x$ with $y$ on a log scale\\
             \cmdo{axis equal} & Fuerza a tener la misma escala en el eje $x$ y en el $y$\\
             \hspace*{-1.5ex}$\begin{array}{l}\text{\cmdo{axis([xmin, xmax,}} \\[-0.25em] \text{\hspace*{0.85cm}\cmdo{ymin, ymax])}} \end{array}$ & Fija los l\'imites del gr\'afico en valores particulares de los ejes\\
-            \cmdo{title('Un T\'itulo')} & A\~nade un t\'itulo al gr\'afico\\
-            \cmdo{xlabel('etiqueta x')} & A\~nade una etiqueta al eje $x$\\
-            \cmdo{ylabel('etiqueta y')} & A\~nade una etiqueta al eje $y$\\
-            \cmdo{legend('esta','este')} & Etiqueta dos curvas en el gr\'afico\\
+            \cmdo{title(\cadena{Un T\'itulo})} & A\~nade un t\'itulo al gr\'afico\\
+            \cmdo{xlabel(\cadena{etiqueta x})} & A\~nade una etiqueta al eje $x$\\
+            \cmdo{ylabel(\cadena{etiqueta y})} & A\~nade una etiqueta al eje $y$\\
+            \cmdo{legend(\cadena{esta},\cadena{este})} & Etiqueta dos curvas en el gr\'afico\\
             \cmdo{grid} & A\~nade una cuadr\'icula al gr\'afico\\
             \cmdo{hold on,..., hold off} & Superpone gr\'aficos\\
             \cmdo{figure} & Comienza un nuevo gr\'afico\\
@@ -598,7 +607,7 @@
         % Modificadores de formato del gr\'afico
         % -------------------------------------------------------
         \begin{fancytableAlt}{Modificadores de formato del gr\'afico}
-            \cmdo{plot(x,y,'-\hspace*{0.1ex}-*r')} & Gr\'afico de con linea de trazos discontinuos (\cmdo{'-\hspace*{0.1ex}-'}), puntos estrellados (\cmdo{'*'}), en color rojo (\cmdo{'r'})\\
+            \cmdo{plot(x,y,\cadena{-\hspace*{0.1ex}-*r})} & Gr\'afico de con linea de trazos discontinuos (\cmdo{\cadena{-\hspace*{0.1ex}-}}), puntos estrellados (\cmdo{\cadena{*}}), en color rojo (\cmdo{\cadena{r}})\\
             \cmdo{. * x o + -} & Tipos de puntos para rellenar el gr\'afico\\
             \cmdo{- -\hspace*{0.1ex}- -. :} & Tipos de linea uniendo puntos\\
 %             -    continua
@@ -606,11 +615,11 @@
 %             -. puntos y trazos
 %             :    puntos
             \cmdo{y g m b w r k} & Colores: amarillo, verde, magenta, azul, blanco, rojo, negro\\
-            \cmdo{'Linewidth',0.5} & Cambia el grosor de l\'inea a la mitad\\
-            \cmdo{'Markersize',2} & Cambia el grosor del punto al doble\\
+            \cmdo{\cadena{Linewidth},0.5} & Cambia el grosor de l\'inea a la mitad\\
+            \cmdo{\cadena{Markersize},2} & Cambia el grosor del punto al doble\\
             \hlinefinalAlt%
         \end{fancytableAlt}
-
+        
         % -------------------------------------------------------
         % Gr\'aficos 2D
         % -------------------------------------------------------
@@ -618,7 +627,7 @@
             \matlabcode{MatlabFiles/plotting.m}%
             \quad\\
 
-            \includegraphics[width=\textwidth]{plotting.eps}
+            \includegraphics[width=\textwidth]{plots/plotting.eps}
         \end{exampleBlock}
 
 
@@ -627,4 +636,230 @@
 
 
 
+
+    \newpage
+
+    \fullwidthheader{Matlab/Octave:\,\,Bestiario\,\,de\,\,comandos}
+    %\fullwidthheader{MATLAB\,\,CHEAT\,\,SHEET}
+
+    \vspace*{0.5cm}
+
+    \begin{multicols}{3}
+        \centering
+
+        % -------------------------------------------------------
+        % Operaciones de ficheros
+        % -------------------------------------------------------
+        \begin{fancytable}{Operaciones de ficheros}
+            \cmdo{fid=fopen(\cadena{datos.txt},\cadena{r})} & Asocia la var. \cmdo{fid} al fichero \cmdo{\cadena{datos.txt}} %de la carpeta de trabajo, 
+            y permiso \cmdo{\cadena{r}}.\newline Devuelve \cmdo{-1} si hay un error \\
+            \cmdo{close(fid);} & Cierra el fichero asignado al nombre interno \cmdo{fid} y lo desvincula de Matlab/Octave.\newline Devuelve \cmdo{-1} si hay un error \\
+            \hseparador%
+            \cmdo{frewind(fid)} & ``Rebobina'' el fichero: cursor de lectoescritura al inicio\\%, es decir, coloca al inicio del fichero el cursor de lectoescritura\\
+%             \hseparador%
+%             \cmdo{-1} & Un \textbf{error} en apertura (o cierre) de fichero se comunica con \cmdo{fid} (o \cmdo{ans}) tomando el valor entero \cmdo{-1}\\%, \cmdo{fid} (o \cmdo{ans}) toma el valor entero \cmdo{-1}\\
+%             \hseparador%
+            \cmdo{feof(fid)} & Vale 1 si estamos en el final del fichero asociado a \cmdo{fid}\\
+            \hseparador%
+            \cmdo{fprintf(fid,\cadena{a es \%.2f}, a)} & Escribe en el fichero de nombre interno \cmdo{fid} el texto combinado con el dato de $a$ \\
+%             \cmdo{fdisp(fid, A)} & Escribe en el fichero de nombre interno \cmdo{fid} el contenido de la variable $A$ \\
+            \hseparador%
+            \cmdo{c=fgetl(fid)} & Lee l\'inea (sin incluir '\cmdo{\verb|\n|}') del fichero \cmdo{fid} y la almacena en \cmdo{c} como {cadena}.\newline \cmdo{-1} si llega a final de fichero \\
+            \cmdo{c=fgets(fid)} & Lee l\'inea (incluyendo '\cmdo{\verb|\n|}') del fichero \cmdo{fid} y la almacena en \cmdo{c} como {cadena}.\newline \cmdo{-1} si llega a final de fichero  \\
+            \cmdo{c=fgets(fid,5)} & Similar, pero lee 5 caracteres siguientes a la \'ultima posici\'on, salvo final de linea.\newline \cmdo{-1} si llega a final de fichero\\
+            \cmdo{[A,cont]=fscanf(fid,\cadena{\%f})} & Lee todos los datos con formato \cmdo{\cadena{\%f}} en \cmdo{fid} hasta que encuentra algo que no lo es o EOF. Los almacena en \cmdo{A} (en \underline{orden columna}), y en \cmdo{cont} el nº de datos le\'idos\\
+            \cmdo{A=fscanf(fid,\cadena{\%f},2)} & Igual, pero \cmdo{A} columna $1\times 2$. Para de leer cuando rellena \cmdo{A} \\
+            \cmdo{A=fscanf(fid,\cadena{\%f},[3,2])} & Igual, pero en \cmdo{A} siendo $3\times 2$, a\~nade {\bf 0}'s hasta completar\\
+            \cmdo{A=fscanf(fid,\cadena{\%f},[2,inf])} & Igual, pero en \cmdo{A} con 2 filas\\
+%             \cmdo{[A,cont]=sscanf(c,\cadena{\%f},2)} & Similar a \cmdo{fscanf}, pero leyendo en una cadena \cmdo{c}\\
+            \hlinefinal%
+        \end{fancytable}
+        
+        % -------------------------------------------------------
+        % Tipos de permisos para apertura de ficheros
+        % -------------------------------------------------------
+        \begin{fancytableAlt}{Tipos de permisos para apertura de ficheros}
+            \cmdo{\cadena{r}} & Abre un fichero \textbf{existente} para \textbf{solo lectura}\\
+            \cmdo{\cadena{r+}} & Abre un fichero \textbf{existente} para \textbf{lectura y escritura}\\
+            \cmdo{\cadena{w}} & Crea un fichero \textbf{nuevo} (borr\'andolo si ya existe) para \textbf{solo escritura}\\
+            \cmdo{\cadena{w+}} & Crea un fichero \textbf{nuevo} (borr\'andolo si ya existe) para \textbf{lectura y escritura} \\
+            \cmdo{\cadena{a}} & Abre un fichero para escritura. Si ya existe, \textbf{comienza a escribir al final de lo ya escrito}\\
+            \hlinefinalAlt%
+        \end{fancytableAlt}
+%         \vfill\null
+        \columnbreak
+
+%         % -------------------------------------------------------
+%         % Lectura/Escritura en ficheros
+%         % -------------------------------------------------------
+%         \begin{fancytable}{Lectura/Escritura en ficheros}
+%             \cmdo{fprintf(fid,'a es \%.2f', a)} & Escribe en el fichero de nombre interno \cmdo{fid} el texto combinado con el dato de $a$ \\
+% %             \cmdo{fdisp(fid, A)} & Escribe en el fichero de nombre interno \cmdo{fid} el contenido de la variable $A$ \\
+%             \hseparador%
+%             \cmdo{c=fgetl(fid)} & Lee l\'inea (sin incluir '\verb|\n|') del fichero \cmdo{fid} y la almacena en \cmdo{c} como {cadena}.\newline \cmdo{-1} si llega a final de fichero \\
+%             \cmdo{c=fgets(fid)} & Lee l\'inea (incluyendo '\verb|\n|') del fichero \cmdo{fid} y la almacena en \cmdo{c} como {cadena}.\newline \cmdo{-1} si llega a final de fichero  \\
+%             \cmdo{c=fgets(fid,5)} & Similar, pero lee 5 caracteres siguientes a la \'ultima posici\'on, salvo final de linea. \cmdo{-1} si llega a final de fichero\\
+%             \cmdo{[A,cont]=fscanf(fid,'\%f',2)} & \\
+%
+%             \hlinefinal%
+%         \end{fancytable}
+%         \vfill\null
+%         \columnbreak
+
+        % -------------------------------------------------------
+        % Verificaci\'on de error en apertura de fichero
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Comprobaci\'on de apertura de fichero}
+            \matlabcode{MatlabFiles/ficheroApertura.m}
+        \end{exampleBlock}
+%         \vfill\null
+%         \columnbreak
+
+        % -------------------------------------------------------
+        % Escritura de resultados en fichero
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Escritura de resultados en fichero (I)}
+            \matlabcode{MatlabFiles/fprintfFichero.m}
+        \end{exampleBlock}
+        
+        \begin{fileBlock}{resultado.txt}
+            \filecode{MatlabFiles/resultado.txt}
+        \end{fileBlock}
+        
+        \begin{exampleBlock}{Escritura de resultados en fichero (II)}
+            \matlabcode{MatlabFiles/fprintfFicheroII.m}
+        \end{exampleBlock}
+        
+        \begin{fileBlock}{resultados.txt}
+            \filecode{MatlabFiles/resultados.txt}
+        \end{fileBlock}
+%         \vfill\null
+%         \columnbreak
+
+
+
+%         % -------------------------------------------------------
+%         % Lectura de ficheros
+%         % -------------------------------------------------------
+%         \begin{fancytable}{Lectura de ficheros}
+%             \cmdo{fprintf(fid,'a es \%.2f', a)} & Escribe en el fichero de nombre interno \cmdo{fid} el texto combinado con el dato de $a$ \\
+%             \cmdo{fdisp(fid, A)} & Escribe en el fichero de nombre interno \cmdo{fid} el contenido de la variable $A$ \\
+%
+%             \hseparador%
+%             \cmdo{c=fgetl(fid)} & Lee l\'inea (sin incluir '\verb|\n|') del fichero \cmdo{fid} y la almacena como \textbf{cadena} en \cmdo{c} \\
+%             \cmdo{c=fgets(fid)} & Lee l\'inea (incluyendo '\verb|\n|') del fichero \cmdo{fid} y la almacena como \textbf{cadena} en \cmdo{c}  \\
+%             \cmdo{c=fgets(fid,5)} & Similar, pero lee 5 caracteres siguientes a la \'ultima posici\'on, salvo final de linea\\
+%             \cmdo{[A,cont]=fscanf(fid,'\%f',2)} & \\
+%             \hlinefinal%
+%         \end{fancytable}
+
+
+
+        % -------------------------------------------------------
+        % Lectura linea a linea hasta final de fichero
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Lectura de l\'ineas con \cmdo{fgetl} hasta final de fichero}
+            \matlabcode{MatlabFiles/fgetl.m}
+        \end{exampleBlock}
+%         \vfill\null
+%         \columnbreak
+
+        % -------------------------------------------------------
+        % Conteo de numero de datos
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Conteo de n\'umero de datos en fichero con \cmdo{feof}}
+            \matlabcode{MatlabFiles/feof.m}
+        \end{exampleBlock}
+        
+        % -------------------------------------------------------
+        % Escritura de resultados en fichero
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Gr\'afica a partir de datos de un archivo}
+            \matlabcode{MatlabFiles/plotFromFile.m}
+        \end{exampleBlock}
+%         \vfill\null
+%         \columnbreak
+
+    \end{multicols}
+
+
+    \newpage
+
+    \fullwidthheader{Matlab/Octave:\,\,Bestiario\,\,de\,\,comandos}
+    %\fullwidthheader{MATLAB\,\,CHEAT\,\,SHEET}
+
+    \vspace*{0.5cm}
+
+    \begin{multicols}{3}
+        \centering
+        
+        % -------------------------------------------------------
+        % Lectura de notas y media
+        % -------------------------------------------------------
+        \begin{fileBlock}{notas.txt}
+            \filecode{MatlabFiles/notas.txt}
+        \end{fileBlock}
+        
+        \begin{exampleBlock}{Media de fichero con notas (I)}
+            \matlabcode{MatlabFiles/notasMediasI.m}
+        \end{exampleBlock}
+        
+        \begin{exampleBlock}{Media de fichero con notas (II)}
+            \matlabcode{MatlabFiles/notasMediasII.m}
+        \end{exampleBlock}
+        
+        \begin{exampleBlock}{Matriz de 4 columnas num\'ericas desde fichero}
+            \matlabcode{MatlabFiles/matriz.m}
+        \end{exampleBlock}
+        
+        \vfill\null
+        \columnbreak
+%                 \vfill\null
+%         \columnbreak
+        
+        % -------------------------------------------------------
+        % Plots: parametricos, curva en 3D y superficies
+        % -------------------------------------------------------
+        \begin{exampleBlock}{Gr\'afico param\'etrico: cardioide}
+            \matlabcode{MatlabFiles/cardioide.m}
+            \quad\\
+            \includegraphics[width=\textwidth]{plots/cardioide.png}
+        \end{exampleBlock}
+        
+        \begin{exampleBlock}{Gr\'afico param\'etrico en 3D con \cmdo{plot3}}
+            \matlabcode{MatlabFiles/plot3Example.m}
+            \quad\\
+            \includegraphics[width=\textwidth]{plots/plot3.png}
+        \end{exampleBlock}
+        
+        \begin{exampleBlock}{Superficies: gr\'aficas de funciones $\bf{z=f(x,y)}$}
+            \matlabcode{MatlabFiles/surferMesh.m}
+            \quad\\
+            \includegraphics[width=\textwidth]{plots/surfer.png}\\[-0.2em]
+            
+            \includegraphics[width=\textwidth]{plots/mesh.png}
+        \end{exampleBlock}
+%         \vfill\null
+%         \columnbreak
+        
+%         \vfill\null
+%         \columnbreak
+
+
+    \end{multicols}
+
+
+%     \newpage
+%
+%     \fullwidthheader{Matlab/Octave:\,\,Bestiario\,\,de\,\,comandos}
+%     %\fullwidthheader{MATLAB\,\,CHEAT\,\,SHEET}
+%
+%     \vspace*{0.5cm}
+%
+%     \begin{multicols}{3}
+%         \centering
+%
+%     \end{multicols}
+%
+%
 \end{document}

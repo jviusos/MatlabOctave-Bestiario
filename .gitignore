@@ -201,5 +201,8 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# Kate
+*.kate-swp
+
 # auto folder when using emacs and auctex 
 /auto/*
